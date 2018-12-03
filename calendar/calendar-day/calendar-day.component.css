@@ -1,0 +1,10 @@
+div.day-container {
+    min-height: 5rem;
+}
+
+div.item {
+    font-size: 0.75rem;
+    padding-left: 0.2rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}

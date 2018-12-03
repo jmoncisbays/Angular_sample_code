@@ -1,0 +1,47 @@
+<div class="container">
+    <div *ngIf="processing == false">
+        <div class="text-center mb-2 calendar-title">
+            <button class="btn btn-primary btn-sm" (click)="processMonth(-1)">
+                <i class="fa fa-lg fa-arrow-left"></i>
+            </button>
+            <span>{{ processedDate | date:"MMMM yyyy"  }}</span>
+            <button class="btn btn-primary btn-sm" (click)="processMonth(1)">
+                <i class="fa fa-lg fa-arrow-right"></i>
+            </button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sunday</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let w of weeks">
+                    <td *ngFor="let d of [0,1,2,3,4,5,6]" class="p-1">
+                        <app-calendar-day [data]="getCalendarData(calendarDay)"></app-calendar-day>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center mt-2">
+            <i class="fa fa-square pto" aria-hidden="true"></i><label class="ml-2 mr-5">PTO</label>
+            <span *ngFor="let c of countries">
+                <i class="fa fa-square" aria-hidden="true" [ngStyle]="{'color': c.calendarColorCode}"></i><label class="ml-2 mr-5">{{ c.name }} Holiday</label>
+            </span>
+            </div>
+    </div>
+    <div *ngIf="processing == true" style="margin-top: 60px; color: #3098e2; text-align: center;">
+        <i class="fa fa-circle-o-notch fa-spin fa-4x"></i>
+    </div>
+    <div class="text-right mt-2">
+        <button type="button" class="btn btn-primary mr-1" (click)="goToResourceAvailabilityRpt()">Resource Availability Report</button>
+        <button type="button" class="btn btn-primary mr-1" (click)="goToPTO()" *ngIf="roleService.isUserInRole(roles.User)" >PTO</button>
+        <button type="button" class="btn btn-primary" (click)="goToHolidays()">Holidays</button>
+    </div>
+</div>

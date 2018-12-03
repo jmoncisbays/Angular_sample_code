@@ -1,0 +1,10 @@
+<div class="day-container">
+    <div class="mb-4">
+        <strong>{{ data.day }}</strong>
+    </div>
+    <div class="align-bottom">
+        <div *ngFor="let i of data.items" class="item" [ngStyle]="{'color': i.color, 'background-color': i.backgroundColor}">
+            {{ i.itemName }}
+        </div>
+    </div>
+</div>
